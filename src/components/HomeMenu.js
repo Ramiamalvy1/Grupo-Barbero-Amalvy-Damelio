@@ -3,8 +3,8 @@ import { View, Text } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { FontAwesome } from "@expo/vector-icons";
-import Home from "./screens/Home";
-import Perfil from "./screens/Perfil";
+import Home from "../screens/Home";
+import Perfil from "../screens/Perfil";
 import AntDesign from '@expo/vector-icons/AntDesign';
 
 const Tab = createBottomTabNavigator();
