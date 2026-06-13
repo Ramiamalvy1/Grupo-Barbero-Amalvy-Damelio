@@ -47,6 +47,9 @@ function Post(props) {
                 <Text>Sacar Like</Text></Pressable> : 
             <Pressable onPress={darLike}>
                 <Text>Dar Like</Text></Pressable>}
+            <Pressable onPress={() => props.navigation.navigate('Comentarios', {id: props.id})}>
+                <Text>Comentarios</Text>
+            </Pressable>
         </View>
     );
 }
