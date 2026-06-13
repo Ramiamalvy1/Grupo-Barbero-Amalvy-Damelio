@@ -1,41 +1,51 @@
 import { Pressable, TextInput, StyleSheet, Text, View } from 'react-native';
-import React, {useState} from 'react';
-import {db, auth} from '../firebase/config';
+import React, { useState } from 'react';
+import { db, auth } from '../firebase/config';
 import { useEffect } from 'react';
 import { FlatList } from 'react-native-web';
+import firebase from 'firebase';
 
 function Comentarios(props) {
-    
-const[post, setPost] = useState('');
-const[comentarios, setComentarios] = useState('');
-const idPost = props.route.params.id;
 
-useEffect(() => {
-    {post? db.collection('posts').doc(idPost).onSnapshot(doc => {setPost(doc.data())}) : <Text>Cargando...</Text>}
-}, [])
+    const [post, setPost] = useState(null);
+    const [comentarios, setComentarios] = useState('');
+    const idPost = props.route.params.id;
 
-function agregarComentario(){
-    db.collection('posts').doc(idPost).update({
-        comentarios: firebase.firestore.FieldValue.arrayUnion({
-            autor: auth.currentUser.email,
-            contenido: comentarios
+    useEffect(() => 
+        {db.collection('posts').doc(idPost).onSnapshot(doc => { setPost(doc.data()) })}
+    ,[])
+
+    function agregarComentario() {
+        db.collection('posts').doc(idPost).update({
+            comentarios: firebase.firestore.FieldValue.arrayUnion({
+                autor: auth.currentUser.email,
+                contenido: comentarios
+            })
         })
-    })
-    .then(() => setComentarios(''))
-    .catch(error => console.log(error));
-}
+            .then(() => setComentarios(''))
+            .catch(error => console.log(error));
+    }
+
+    if (!post) {
+        return <Text>Cargando...</Text>;
+    }
 
     return (
         <View>
-            <Text>{post.data.owner}</Text>
-            <Text>{post.data.descripcionPost}</Text>
-            {post.data.comentarios ? <FlatList data={post.data.comentarios} keyExtractor={(item) => item.id} renderItem={({item}) => <View><Text>{item.autor}</Text><Text>{item.contenido}</Text></View>} /> : null}
+            <Text>{post.owner}</Text>
+            <Text>{post.descripcionPost}</Text>
+            
+            {post.comentarios ? 
+            <FlatList 
+                data={post.comentarios} 
+                keyExtractor={(item) => item.autor + item.contenido} 
+                renderItem={({ item }) => <View><Text>{item.autor}</Text><Text>{item.contenido}</Text></View>} /> : null}
             <TextInput
                 placeholder="Escribe un comentario aquí..."
-                data={comentarios}
+                value={comentarios}
                 onChangeText={text => setComentarios(text)}
             />
-            <Pressable onPress={() => {agregarComentario()}}>
+            <Pressable onPress={() => { agregarComentario() }}>
                 <Text>Enviar Comentario</Text>
             </Pressable>
         </View>
