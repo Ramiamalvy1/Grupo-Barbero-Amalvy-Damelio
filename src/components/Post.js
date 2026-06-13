@@ -1,4 +1,4 @@
-import { View, Text, Pressable } from 'react-native';
+import { View, Text, Pressable, StyleSheet } from 'react-native';
 import React from 'react';
 import { db, auth } from '../../firebase/config';
 import { FlatList } from 'react-native-web';
@@ -38,28 +38,88 @@ function Post(props) {
         }
     }, []);
 
-    return(
-        <View>
-            <Text>{props.data.owner}</Text>
-            <Text>{props.data.descripcionPost}</Text>
-            {props.data.likes ? <Text>{props.data.likes.length} Likes</Text> : null}
-            {like ? <Pressable onPress={sacarLike}>
-                <Text>Sacar Like</Text></Pressable> : 
-            <Pressable onPress={darLike}>
-                <Text>Dar Like</Text></Pressable>}
-            <Pressable onPress={() => props.navigation.navigate('Comentarios', {id: props.id})}>
-                <Text>Comentarios</Text>
-            </Pressable>
+return(
+        <View style={styles.postCard}>
+          
+            <Text style={styles.owner}>⚽ {props.data.owner}</Text>
+            
+           
+            <Text style={styles.descripcion}>{props.data.descripcionPost}</Text>
+            
+          
+            {props.data.likes ? <Text style={styles.likesCount}>{props.data.likes.length} Likes</Text> : null}
+            
+          
+            <View style={styles.actionsContainer}>
+                {like ? (
+                    <Pressable style={styles.buttonDislike} onPress={sacarLike}>
+                        <Text style={styles.buttonTextDislike}>Like</Text>
+                    </Pressable>
+                ) : (
+                    <Pressable style={styles.buttonLike} onPress={darLike}>
+                        <Text style={styles.buttonTextLike}>Like!</Text>
+                    </Pressable>
+                )}
+            </View>
         </View>
     );
 }
 
 const styles = StyleSheet.create({
-    mostrar: {
-        display: 'flex',
+    postCard: {
+        backgroundColor: '#ffffff',
+        marginHorizontal: 15,
+        marginVertical: 8,
+        padding: 15,
+        borderRadius: 4,               
+        borderLeftWidth: 4,
+        borderLeftColor: '#74acdf',      
+        borderBottomWidth: 1,
+        borderBottomColor: '#e0e0e0',
     },
-    ocultar: {
-        display: 'none',
+    owner: {
+        fontWeight: 'bold',
+        color: '#1e3d59',                
+        fontSize: 14,
+        marginBottom: 6,
+    },
+    descripcion: {
+        fontSize: 16,
+        color: '#333333',
+        marginBottom: 10,
+    },
+    likesCount: {
+        fontSize: 13,
+        color: '#74acdf',               
+        fontWeight: 'bold',
+        marginBottom: 8,
+    },
+    actionsContainer: {
+        borderTopWidth: 1,
+        borderTopColor: '#f4f9fc',
+        paddingTop: 8,
+    },
+    buttonLike: {
+        backgroundColor: '#74acdf',     
+        padding: 8,
+        borderRadius: 4,
+    },
+    buttonTextLike: {
+        color: '#ffffff',
+        textAlign: 'center',
+        fontWeight: 'bold',
+    },
+    buttonDislike: {
+        backgroundColor: '#e6f0fa',      
+        padding: 8,
+        borderRadius: 4,
+        borderWidth: 1,
+        borderColor: '#74acdf',
+    },
+    buttonTextDislike: {
+        color: '#1e3d59',
+        textAlign: 'center',
+        fontWeight: 'bold',
     }
 });
 
