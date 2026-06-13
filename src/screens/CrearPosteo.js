@@ -11,6 +11,7 @@ function CrearPosteo() {
         db.collection('posts').add({
             owner: auth.currentUser.email,
             descripcionPost: post,
+            comentarios: [],
             likes: [],
             createdAt: Date.now()
         })
