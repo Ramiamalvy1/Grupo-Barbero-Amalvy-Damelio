@@ -7,7 +7,7 @@ import Home from "../screens/Home";
 import Perfil from "../screens/Perfil";
 import AntDesign from '@expo/vector-icons/AntDesign';
 import StackNavegator from "./StackNavegator";
-import Posts from "../screens/Posts";
+import Posts from "../screens/CrearPosteo";
 
 const Tab = createBottomTabNavigator();
 
