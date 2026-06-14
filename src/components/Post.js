@@ -34,8 +34,10 @@ function Post(props) {
     useEffect(() => {
         if (props.data.likes && props.data.likes.includes(auth.currentUser.email)) {
             setLike(true);
+        } else {
+            setLike(false);
         }
-    }, []);
+    }, [props.data.likes]);
 
     return (
         <View style={styles.postCard}>
@@ -44,21 +46,21 @@ function Post(props) {
             {props.data.likes ? <Text style={styles.likesCount}>{props.data.likes.length} Likes</Text> : null}
             <View style={styles.actionsContainer}>
                 {like ?
-                    <Pressable style={styles.buttonDislike} onPress={sacarLike}> 
+                    <Pressable style={styles.buttonDislike} onPress={sacarLike}>
                         <Text style={styles.buttonTextDislike}>Unlike</Text>
                     </Pressable>
-                 : 
+                    :
                     <Pressable style={styles.buttonLike} onPress={darLike}>
                         <Text style={styles.buttonTextLike}>Like</Text>
                     </Pressable>}
             </View>
             <View>
-                <Pressable onPress={() => props.navigation.navigate('Comentarios', {id: props.id})}>
+                <Pressable onPress={() => props.navigation.navigate('Comentarios', { id: props.id })}>
                     <Text style={styles.buttonTextComment}>Comentar</Text>
                 </Pressable>
             </View>
         </View>
-        )
+    )
 }
 
 const styles = StyleSheet.create({

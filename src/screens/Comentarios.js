@@ -13,11 +13,22 @@ function Comentarios(props) {
     const [like, setLike] = useState(false);
 
 
-    useEffect(() => { db.collection('posts').doc(idPost).onSnapshot(doc => { setPost(doc.data())}); 
-    if (post && post.likes && post.likes.includes(auth.currentUser.email)) {
-                setLike(true);
-            }}
-        , [])
+    useEffect(() => {
+        db.collection('posts')
+            .doc(idPost)
+            .onSnapshot(doc => {
+                setPost(doc.data());
+
+                if (
+                    doc.data().likes &&
+                    doc.data().likes.includes(auth.currentUser.email)
+                ) {
+                    setLike(true);
+                } else {
+                    setLike(false);
+                }
+            });
+    }, []);
 
 
     function darLike() {
