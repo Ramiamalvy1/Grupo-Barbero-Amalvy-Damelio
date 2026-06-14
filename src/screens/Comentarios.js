@@ -14,7 +14,7 @@ function Comentarios(props) {
 
 
     useEffect(() => { db.collection('posts').doc(idPost).onSnapshot(doc => { setPost(doc.data())}); 
-    if (props.data.likes && props.data.likes.includes(auth.currentUser.email)) {
+    if (post && post.likes && post.likes.includes(auth.currentUser.email)) {
                 setLike(true);
             }}
         , [])
@@ -23,7 +23,7 @@ function Comentarios(props) {
     function darLike() {
         setLike(true);
         db.collection('posts')
-            .doc(props.id)
+            .doc(idPost)
             .update({
                 likes: firebase.firestore.FieldValue.arrayUnion(auth.currentUser.email)
             })
@@ -33,7 +33,7 @@ function Comentarios(props) {
     function sacarLike() {
         setLike(false);
         db.collection('posts')
-            .doc(props.id)
+            .doc(idPost)
             .update({
                 likes: firebase.firestore.FieldValue.arrayRemove(auth.currentUser.email)
             })
@@ -60,7 +60,7 @@ function Comentarios(props) {
         <View>
             <Text>{post.owner}</Text>
             <Text>{post.descripcionPost}</Text>
-            {props.data.likes ? <Text style={styles.likesCount}>{props.data.likes.length} Likes</Text> : null}
+            {post.likes ? <Text style={styles.likesCount}>{post.likes.length} Likes</Text> : null}
             <View style={styles.actionsContainer}>
                 {like ?
                     <Pressable style={styles.buttonDislike} onPress={sacarLike}>
