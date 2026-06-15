@@ -20,11 +20,9 @@ function Comentarios(props) {
                 setPost(doc.data());
 
                 if (
-                    doc.data().likes &&
+                    doc.data().likes && // Se puede borrar. Entender que es .data() y la 2da parte del effect en post.js
                     doc.data().likes.includes(auth.currentUser.email)
-                ) {
-                    setLike(true);
-                } else {
+                ) {setLike(true);} else {
                     setLike(false);
                 }
             });

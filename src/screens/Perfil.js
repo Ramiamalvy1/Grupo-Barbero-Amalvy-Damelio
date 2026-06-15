@@ -1,12 +1,20 @@
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { auth } from '../firebase/config';
 
-
-function Perfil() {
+function Perfil(props) {
     return (
         <View>
-            <Text>Perfil</Text>
+            <Text>Profile</Text>
+            <Pressable onPress={() => {
+                props.navigation.navigate('Login');
+                auth.signOut();
+            }}>
+                {console.log('Desloguearse')}
+                <Text>Desloguearse</Text>
+            </Pressable>
         </View>
-    )
+    );
 }
 
 export default Perfil;
