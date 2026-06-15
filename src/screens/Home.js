@@ -39,3 +39,25 @@ function Home(props) {
 }
 
 export default Home;
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#f4f9fc',
+    padding: 10,
+  },
+  header: {
+    borderBottomWidth: 3,
+    borderBottomColor: '#74acdf',
+    paddingBottom: 5,
+    marginHorizontal: 15,
+    marginTop: 10,
+    marginBottom: 10,
+  },
+  title: {
+    fontSize: 20,
+    textAlign: 'center',
+    fontWeight: 'bold',
+    color: '#1e3d59',
+  }
+});

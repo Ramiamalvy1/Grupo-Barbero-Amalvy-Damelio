@@ -37,3 +37,55 @@ function CrearPosteo() {
 
 
 export default CrearPosteo;
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: '#f4f9fc',
+        justifyContent: 'center',
+        padding: 10,
+    },
+    formContainer: {
+        backgroundColor: '#ffffff',
+        marginHorizontal: 15,
+        padding: 20,
+        borderRadius: 4,
+        borderTopWidth: 4,
+        borderTopColor: '#74acdf',
+        borderBottomColor: '#e0e0e0',
+    },
+    title: {
+        fontSize: 18,
+        fontWeight: 'bold',
+        color: '#1e3d59',
+        textAlign: 'center',
+        marginBottom: 5,
+    },
+    subtitle: {
+        fontSize: 13,
+        color: '#666',
+        textAlign: 'center',
+        marginBottom: 15,
+    },
+    input: {
+        height: 70,
+        marginVertical: 8,
+        borderWidth: 1,
+        borderColor: '#74acdf',
+        borderRadius: 4,
+        padding: 10,
+        backgroundColor: '#fff',
+    },
+    buttonPrimary: {
+        backgroundColor: '#74acdf',
+        padding: 12,
+        borderRadius: 4,
+        marginTop: 10,
+    },
+    buttonPrimaryText: {
+        color: '#ffffff',
+        textAlign: 'center',
+        fontWeight: 'bold',
+        fontSize: 16,
+    }
+});
