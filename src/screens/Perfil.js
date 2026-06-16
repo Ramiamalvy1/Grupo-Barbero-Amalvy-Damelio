@@ -43,7 +43,7 @@ function Perfil(props) {
 
     return (
         <View>
-            <Text>{user.username}</Text>
+            <Text>{user.usuario}</Text>
             <Text>{auth.currentUser.email}</Text>
             <FlatList
                 data={posts}
