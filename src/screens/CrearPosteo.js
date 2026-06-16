@@ -3,7 +3,7 @@ import React, {useState} from 'react';
 import {db, auth} from '../firebase/config';
 import { useEffect } from 'react';
 
-function CrearPosteo() {
+function CrearPosteo(props) {
     const [post, setPost] = useState('');
 
     function enviarPosteo(){
@@ -15,7 +15,7 @@ function CrearPosteo() {
             likes: [],
             createdAt: Date.now()
         })
-        .then()
+        .then(() => props.navigation.navigate("Menu", {screen:"Home"}, setPost('')))
         .catch(error => console.log(error));
     }
 

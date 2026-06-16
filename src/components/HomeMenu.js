@@ -14,8 +14,8 @@ const Tab = createBottomTabNavigator();
 function HomeMenu(props){
     return(        
             <Tab.Navigator screenOptions={{ headerShown: false }}>
-                <Tab.Screen name="Stack" component={StackNavegator} options={{tabBarIcon: ()=> <FontAwesome name="home" size={20} color='black'/>}}/>
-                <Tab.Screen name="AddPost" component={Posts} options={{tabBarIcon: ()=> <FontAwesome name="plus" size={20} color='black' />}}/>
+                <Tab.Screen name="Menu" component={StackNavegator} options={{tabBarIcon: ()=> <FontAwesome name="home" size={20} color='black'/>}}/>
+                <Tab.Screen name="Agregar Post" component={Posts} options={{tabBarIcon: ()=> <FontAwesome name="plus" size={20} color='black' />}}/>
                 <Tab.Screen name="Perfil" component={Perfil} options={{tabBarIcon: ()=> <AntDesign name="user" size={20} color="black" />}}/>
             </Tab.Navigator>
     )

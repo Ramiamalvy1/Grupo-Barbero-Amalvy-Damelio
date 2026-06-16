@@ -11,7 +11,7 @@ function Login(props){
     const [password, setPassword] = useState("");
     const [loginError, setLoginError] = useState("");
 
-    useEffect(function(){
+    useEffect(() => {
         
         function verificarLogueo(usuarioLogueado){
             if (usuarioLogueado) {
@@ -43,7 +43,7 @@ function Login(props){
             props.navigation.navigate("HomeMenu");
         })
         .catch(error => { 
-            setLoginError(error.message);
+            setLoginError('Email o contraseña incorrectos');
         });
     }
 

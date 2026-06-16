@@ -1,7 +1,7 @@
 import { View, Text, Pressable, StyleSheet } from 'react-native';
 import React from 'react';
 import { db, auth } from '../firebase/config';
-import { FlatList } from 'react-native-web';
+import { FlatList } from 'react-native';
 import { useState, useEffect } from 'react';
 import firebase from 'firebase';
 
@@ -55,8 +55,8 @@ function Post(props) {
                     </Pressable>}
             </View>
             <View>
-                <Pressable onPress={() => props.navigation.navigate('Comentarios', { id: props.id })}>
-                    <Text style={styles.buttonTextComment}>Comentar</Text>
+                <Pressable onPress={() => props.navigation.navigate('Menu', {screen: 'Comentarios', params: {id: props.id}})}>
+                    <Text style={styles.buttonTextComment}>Comentarios</Text>
                 </Pressable>
             </View>
         </View>
@@ -123,7 +123,7 @@ const styles = StyleSheet.create({
         color: '#1e3d59',
         textAlign: 'center',
         fontWeight: 'bold',
-    }
+    },
 });
 
 export default Post;
